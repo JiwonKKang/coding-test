@@ -8,6 +8,7 @@ public class Main {
         String[] splitStr = str.split(" ");
         String max = splitStr[0];
 
+
         for (String s : splitStr) {
             if(max.length() < s.length()) max = s;
         }
