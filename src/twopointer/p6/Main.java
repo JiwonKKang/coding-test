@@ -1,25 +1,27 @@
-package twopointer.p4;
+package twopointer.p6;
 
-import java.util.Scanner;
-
-public class Main {
+import java.util.*;
+class Main {
     public int solution(int n, int k, int[] arr){
-        int answer = 0;
-        int lt = 0;
-        int sum = 0;
+        int answer=0, cnt=0, lt=0;
 
-        // rt 1씩 증가
         for (int rt = 0; rt < n; rt++) {
-            sum += arr[rt];
-            // k와 같다면 + 1
-            if(sum == k) answer++;
+            if(arr[rt] == 0) cnt++;
 
-            // k 보다 커졌다면 작거나 같아질때까지 lt++하면서 빼기
-            while(sum >= k) {
-                sum -= arr[lt++];
-                if (sum == k) answer++;
+            while (cnt > k) {
+                if(arr[lt] == 0) cnt--;
+                lt++;
             }
+            answer = Math.max(answer, rt - lt + 1);
         }
+
+//        if(cnt > k) {
+//            int length = rt - lt;
+//            while(arr[lt] != 0) lt++;
+//            lt++;
+//            cnt--;
+//            answer = Math.max(length, answer);
+//        }
         return answer;
     }
 
